@@ -1,15 +1,14 @@
 'use client'
 import React, { useState } from 'react';
-import { Button, Flex, Image, Input, Layout, LayoutProps, Menu } from 'antd';
+import { Flex, Image, Input, Layout, LayoutProps, Menu } from 'antd';
 import { Content, Footer, Header } from 'antd/es/layout/layout';
 import Sider from 'antd/es/layout/Sider';
-import MenuItem from 'antd/es/menu/MenuItem';
 
 
 const LayoutFH = (props: LayoutProps & { overflow?: 'auto' | 'hidden'}) => {
-  let { children, ...layoutProps } = props
+  const { children, ...layoutProps } = props
   return <Layout {...layoutProps} style={{flex: 1, height: '100%', overflow: props.overflow || 'hidden'}}>
-    {props.children}
+    {children}
   </Layout>
 }
 
@@ -22,7 +21,7 @@ const Home = () => {
     <Header >
       <Flex align='center' justify='space-between' gap={24}>
         <Flex flex={'0'} align='center' justify='flex-start' gap={8} >
-          <Image style={{flex: 1}} width={200} preview={false} src={'https://logosbynick.com/wp-content/uploads/2018/03/final-logo-example.png'} />
+          <Image alt='logo' style={{flex: 1}} width={200} preview={false} src={'https://logosbynick.com/wp-content/uploads/2018/03/final-logo-example.png'} />
         </Flex>
         <Flex flex={'1 0'} align='center' justify='center' gap={8} >
           <Menu
