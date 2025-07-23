@@ -72,7 +72,7 @@ const Home: React.FC = () => {
             //   borderRadius: borderRadiusLG,
             }}
           >
-            Content
+            Main Content
           </Content>
         </Layout>
       </Layout>
