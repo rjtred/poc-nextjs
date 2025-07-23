@@ -1,95 +1,89 @@
-import Image from "next/image";
-import styles from "./page.module.css";
+'use client'
+import React, { useState } from 'react';
+import { Button, Flex, Image, Input, Layout, LayoutProps, Menu } from 'antd';
+import { Content, Footer, Header } from 'antd/es/layout/layout';
+import Sider from 'antd/es/layout/Sider';
+import MenuItem from 'antd/es/menu/MenuItem';
 
-export default function Home() {
-  return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol>
-          <li>
-            Get started by editing <code>src/app/page.tsx</code>.
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
 
-        <div className={styles.ctas}>
-          <a
-            className={styles.primary}
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className={styles.logo}
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-            className={styles.secondary}
-          >
-            Read our docs
-          </a>
-        </div>
-      </main>
-      <footer className={styles.footer}>
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
-  );
+const LayoutFH = (props: LayoutProps & { overflow?: 'auto' | 'hidden'}) => {
+  let { children, ...layoutProps } = props
+  return <Layout {...layoutProps} style={{flex: 1, height: '100%', overflow: props.overflow || 'hidden'}}>
+    {props.children}
+  </Layout>
 }
+
+const Home = () => {
+  const [collapsed, setCollapsed] = useState(false);
+  
+  return (
+
+  <LayoutFH>
+    <Header >
+      <Flex align='center' justify='space-between' gap={24}>
+        <Flex flex={'0'} align='center' justify='flex-start' gap={8} >
+          <Image style={{flex: 1}} width={200} preview={false} src={'https://logosbynick.com/wp-content/uploads/2018/03/final-logo-example.png'} />
+        </Flex>
+        <Flex flex={'1 0'} align='center' justify='center' gap={8} >
+          <Menu
+            mode='horizontal'
+            theme="dark"
+            defaultSelectedKeys={['1']}
+            style={{ flex: 'auto', width: '100%', justifyContent: 'flex-end' }}
+            items={
+              [
+                {
+                  key: '1',
+                  label: 'Nav 1'
+                },
+                {
+                  key: '2',
+                  label: 'Nav 2'
+                },
+                {
+                  key: '3',
+                  label: 'Nav 3'
+                }
+              ]
+            }
+          />
+          <Input 
+            style={{ flex: 'auto', width: '300px', justifyContent: 'flex-end' }}
+          />
+        </Flex>
+      </Flex>
+    </Header>
+    <LayoutFH hasSider>
+      <Sider width='20%' trigger={null} collapsible collapsed={collapsed} onCollapse={(value) => setCollapsed(value)}>
+        <Menu
+          mode="inline"
+          defaultSelectedKeys={['1']}
+          style={{ height: '100%', borderRight: 0 }}
+          items={
+            [
+              {
+                key: '1',
+                label: 'Nav 1'
+              },
+              {
+                key: '2',
+                label: 'Nav 2'
+              },
+              {
+                key: '3',
+                label: 'Nav 3'
+              }
+            ]}
+        />
+      </Sider>
+      <Content>
+        <LayoutFH>
+
+        </LayoutFH>
+      </Content>
+    </LayoutFH>
+    <Footer ></Footer>
+  </LayoutFH>
+)
+}
+export default Home;
