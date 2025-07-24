@@ -6,7 +6,7 @@ import "./global.css";
 
 export const metadata: Metadata = {
   title: "POC",
-  description: "Proof of Concept",
+  description: "Proof of Concept ",
 };
 
 export default function RootLayout({
